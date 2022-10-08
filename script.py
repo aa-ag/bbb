@@ -13,5 +13,10 @@ headers = {
     }
 r = requests.post(
         url,
-        headers=headers
+        headers=headers,
+        data=f'grant_type=password&username={0}&password={1}'.format(
+            bbbUSERNAME,bbbPASSWORD
+        )
     )
+
+print(r)
