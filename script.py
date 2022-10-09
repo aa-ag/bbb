@@ -14,11 +14,14 @@ headers = {
         'content-Type': 'application/x-www-form-urlencoded'
     }
 
-request_body = "password&username={0}&password={1}".format(
+request_body = "grant_type=password&username={0}&password={1}".format(
     bbbUSERNAME, bbbPASSWORD
 )
 
-r = requests.post(
+request_body = json.dumps(request_body)
+print(request_body)
+
+r = requests.get(
         url,
         headers=headers,
         data=request_body,
