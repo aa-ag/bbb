@@ -7,6 +7,7 @@ load_dotenv()
 
 bbbUSERNAME = os.environ["bbbUSERNAME"]
 bbbPASSWORD = os.environ["bbbPASSWORD"]
+bbbTOKEN = os.environ["bbbTOKEN"]
 
 url = 'https://api.bbb.org/token'
 
