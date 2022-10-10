@@ -16,6 +16,21 @@ def authenticate():
      before making any calls to the api,
      using a pre-registered username & password, 
      a token is generated.
+
+     response = {
+        "access_token": x,
+        "token_type": y,
+        "expires_in": z,
+        "userName": a,
+        "authGuid": b,
+        "maxRequestsForMonthPeriod": c,
+        "maxRequestsForDayPeriod": d,
+        "maxRequestsForHourPeriod": e,
+        "maxRequestsForMinutePeriod": f,
+        "maxRecordsForMonthPeriod": g,
+        ".issued": h,
+        ".expires": j,
+    }
     '''
     url = 'https://api.bbb.org/token'
 
