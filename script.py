@@ -1,3 +1,4 @@
+from inspect import Parameter
 from unittest.util import safe_repr
 from dotenv import load_dotenv
 import requests
@@ -85,7 +86,10 @@ def search_org(bbb_token=None):
         'IncorporatedState', 'IncorporatedYear', 'LatLng'
     '''
     
-    url = "https://api.bbb.org/api/orgs/search?businessUrl=https://www.zendesk.com/"
+    url = "https://api.bbb.org/api/orgs/search?{0}={1}".format(
+        choosen_paramenter,
+        paramenter_input
+    )
     
     headers = {
             'Authorization': f'Bearer {bbb_token}',
@@ -99,9 +103,10 @@ def search_org(bbb_token=None):
     
     search_results = r["SearchResults"]
 
-    for result in search_results:
-        print(result.keys())
+    print(search_results)
 
 
 if __name__ == "__main__":
+    choosen_paramenter = "businessUrl"
+    paramenter_input = "https://www.zendesk.com/"
     search_org(bbb_token)
