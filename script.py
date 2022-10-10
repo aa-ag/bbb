@@ -50,7 +50,10 @@ def authenticate():
 
     if r.status_code == 200:
         authentication_data = json.loads(r.content)
-        return authentication_data
+        with open(".env", "a") as f:
+            f.write(
+                f"\nbbb_token=\'{authentication_data['access_token']}\'"
+            )
     else:
         print(r.status_code, r.headers, r.content)
         return
@@ -76,5 +79,6 @@ def search_org(bbb_token=None):
 
 
 if __name__ == "__main__":
-    authentication_data = authenticate()
-    search_org(authentication_data["access_token"])
+    # authentication_data = authenticate()
+    # search_org(authentication_data["access_token"])
+    authenticate()
