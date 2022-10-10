@@ -7,10 +7,15 @@ load_dotenv()
 
 bbbUSERNAME = os.environ["bbbUSERNAME"]
 bbbPASSWORD = os.environ["bbbPASSWORD"]
-bbbTOKEN = os.environ["bbbTOKEN"]
 
 
 def authenticate():
+    '''
+     in compliance with the documentation, 
+     before making any calls to the api,
+     using a pre-registered username & password, 
+     a token is generated.
+    '''
     url = 'https://api.bbb.org/token'
 
     header = {
@@ -54,5 +59,4 @@ def search_org():
 
 
 if __name__ == "__main__":
-    authenticate()
-    # search_org()
+    search_org()
