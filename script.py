@@ -43,7 +43,10 @@ def authenticate():
 
 
 def search_org():
-    
+    '''
+     generate authentication token,
+     and search for an org by paramenter `primaryOrganizationName`
+    '''
     bbb_token = authenticate()
     
     url = "https://api.bbb.org/api/orgs/search?primaryOrganizationName=Zendesk"
