@@ -27,9 +27,13 @@ def authenticate():
             data=request_body,
         )
 
-    print(r.status_code)
-    print(r.headers)
-    print(r.content)
+    if r.status_code == 200:
+        contents = json.loads(r.content)
+        authentication_token = contents["access_token"]
+        return authentication_token
+    else:
+        print(r.status_code, r.headers, r.content)
+        return
 
 
 def search_org():
