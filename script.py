@@ -1,7 +1,8 @@
-import requests
 from dotenv import load_dotenv
+import requests
 import os
 import json
+import datetime
 
 load_dotenv()
 
@@ -33,21 +34,18 @@ def authenticate():
         )
 
     if r.status_code == 200:
-        contents = json.loads(r.content)
-        authentication_token = contents["access_token"]
-        print(authentication_token)
-        return authentication_token
+        authentication_data = json.loads(r.content)
+        return authentication_data
     else:
         print(r.status_code, r.headers, r.content)
         return
 
 
-def search_org():
+def search_org(bbb_token=None):
     '''
      generate authentication token,
      and search for an org by paramenter `businessUrl`
     '''
-    bbb_token = authenticate()
     
     url = "https://api.bbb.org/api/orgs/search?businessUrl=https://www.zendesk.com/"
     
@@ -63,4 +61,5 @@ def search_org():
 
 
 if __name__ == "__main__":
-    search_org()
+    authentication_data = authenticate()
+    search_org(authentication_data["access_token"])
