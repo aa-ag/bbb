@@ -45,11 +45,11 @@ def authenticate():
 def search_org():
     '''
      generate authentication token,
-     and search for an org by paramenter `primaryOrganizationName`
+     and search for an org by paramenter `businessUrl`
     '''
     bbb_token = authenticate()
     
-    url = "https://api.bbb.org/api/orgs/search?primaryOrganizationName=Zendesk"
+    url = "https://api.bbb.org/api/orgs/search?businessUrl=https://www.zendesk.com/"
     
     headers = {
             'Authorization': f'Bearer {bbb_token}',
