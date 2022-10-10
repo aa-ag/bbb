@@ -35,6 +35,7 @@ def authenticate():
     if r.status_code == 200:
         contents = json.loads(r.content)
         authentication_token = contents["access_token"]
+        print(authentication_token)
         return authentication_token
     else:
         print(r.status_code, r.headers, r.content)
@@ -42,17 +43,17 @@ def authenticate():
 
 
 def search_org():
-    url = "https://api.bbb.org/api/orgs/search"
+    
+    bbb_token = authenticate()
+    
+    url = "https://api.bbb.org/api/orgs/search?primaryOrganizationName=Zendesk"
+    
     headers = {
-            'Authorization': f'Bearer {bbbTOKEN}',
+            'Authorization': f'Bearer {bbb_token}',
             'content-Type': 'application/x-www-form-urlencoded'
         }
 
-    request_body = "grant_type=password&username={0}&password={1}".format(
-        bbbUSERNAME, bbbPASSWORD
-    )
-
-    r = requests.get(url,headers=headers,data=request_body)
+    r = requests.get(url,headers=headers)
 
     print(r.headers)
     print(r.content)
