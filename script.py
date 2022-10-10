@@ -1,3 +1,4 @@
+from unittest.util import safe_repr
 from dotenv import load_dotenv
 import requests
 import os
@@ -9,6 +10,7 @@ load_dotenv()
 bbbUSERNAME = os.environ["bbbUSERNAME"]
 bbbPASSWORD = os.environ["bbbPASSWORD"]
 
+bbb_token = os.environ["bbb_token"]
 
 def authenticate():
     '''
@@ -49,7 +51,7 @@ def authenticate():
         )
 
     if r.status_code == 200:
-        authentication_data = json.loads(r.content)
+        authentication_data = r.json()
         with open(".env", "a") as f:
             f.write(
                 f"\nbbb_token=\'{authentication_data['access_token']}\'"
@@ -63,6 +65,24 @@ def search_org(bbb_token=None):
     '''
      generate authentication token,
      and search for an org by paramenter `businessUrl`
+
+     response object has 3 properties:
+        - TotalResults
+        - PageNumber
+        - SearchResults
+
+        and each object within the list of results contains:
+        'BusinessId', 'BureauCode', 'OrganizationName', 
+        'PrimaryCategory', 'ReportURL', 'City', 'StateProvince', 
+        'Phones', 'BusinessURLs', 'Address', 'AltOrganizationNames', 
+        'OrganizationType', 'OrgId', 'OrganizationLastChanged', 
+        'RatingLastChanged', 'AccreditationStatusLastChanged', 
+        'IsICEParticipant', 'ExcludeFromFindALocation', 
+        'ComplaintCloseTypeCount', 'ComplaintType', 'LicenseDetails', 
+        'RatingIcons', 'ProfileUrl', 'BbbFileOpenDate', 'TypeOfEntity', 
+        'IncorpStateCode', 'IncorpCountryCode', 'IncorporationDate', 
+        'CustomerContacts', 'Statistics', 'Alerts', 'CustomTexts', 
+        'IncorporatedState', 'IncorporatedYear', 'LatLng'
     '''
     
     url = "https://api.bbb.org/api/orgs/search?businessUrl=https://www.zendesk.com/"
@@ -72,13 +92,16 @@ def search_org(bbb_token=None):
             'content-Type': 'application/x-www-form-urlencoded'
         }
 
-    r = requests.get(url,headers=headers)
+    r = requests.get(url,headers=headers).json()
 
-    print(r.headers)
-    print(r.content)
+    if r["TotalResults"] < 1:
+        return "No results"
+    
+    search_results = r["SearchResults"]
+
+    for result in search_results:
+        print(result.keys())
 
 
 if __name__ == "__main__":
-    # authentication_data = authenticate()
-    # search_org(authentication_data["access_token"])
-    authenticate()
+    search_org(bbb_token)
