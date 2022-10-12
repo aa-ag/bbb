@@ -1,10 +1,9 @@
-from inspect import Parameter
-from unittest.util import safe_repr
 from dotenv import load_dotenv
 import requests
 import os
 import json
 import datetime
+from pprint import pprint
 
 load_dotenv()
 
@@ -102,12 +101,12 @@ def search_org(bbb_token=None):
         return "No results"
     
     search_results = r["SearchResults"]
-
-    for result in search_results:
-        print(result["ProfileUrl"])
+    pprint(search_results)
+    # for result in search_results:
+    #     print(result["ProfileUrl"])
 
 
 if __name__ == "__main__":
     choosen_paramenter = "businessUrl"
-    paramenter_input = "https://www.zendesk.com/"
+    paramenter_input = "https://tristartn.com/"
     search_org(bbb_token)
