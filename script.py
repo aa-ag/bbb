@@ -103,7 +103,8 @@ def search_org(bbb_token=None):
     
     search_results = r["SearchResults"]
 
-    print(search_results)
+    for result in search_results:
+        print(result["ProfileUrl"])
 
 
 if __name__ == "__main__":
