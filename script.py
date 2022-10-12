@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 import requests
 import os
 import json
-import datetime
+from bs4 import BeautifulSoup
 from pprint import pprint
 
 load_dotenv()
@@ -106,8 +106,12 @@ def search_org(bbb_token=None):
         return result["ProfileUrl"]
 
 
+def scrape_bbb_profile(bbb_url):
+    pass
+
+
 if __name__ == "__main__":
     choosen_paramenter = "businessUrl"
     paramenter_input = "https://zendesk.com/"
     bbb_url = search_org(bbb_token)
-    print(bbb_url)
+    scrape_bbb_profile(bbb_url)
