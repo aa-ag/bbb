@@ -101,12 +101,13 @@ def search_org(bbb_token=None):
         return "No results"
     
     search_results = r["SearchResults"]
-    pprint(search_results)
-    # for result in search_results:
-    #     print(result["ProfileUrl"])
+    # pprint(search_results)
+    for result in search_results:
+        return result["ProfileUrl"]
 
 
 if __name__ == "__main__":
     choosen_paramenter = "businessUrl"
-    paramenter_input = "https://tristartn.com/"
-    search_org(bbb_token)
+    paramenter_input = "https://zendesk.com/"
+    bbb_url = search_org(bbb_token)
+    print(bbb_url)
