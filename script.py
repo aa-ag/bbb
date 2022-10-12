@@ -107,11 +107,22 @@ def search_org(bbb_token=None):
 
 
 def scrape_bbb_profile(bbb_url):
-    pass
+    headers = {
+        'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246"
+    }
+    page = requests.get(
+        bbb_url,
+        headers=headers
+    )
+
+    soup = BeautifulSoup(page.content, 'html.parser')
+    pprint(soup)
+
 
 
 if __name__ == "__main__":
-    choosen_paramenter = "businessUrl"
-    paramenter_input = "https://zendesk.com/"
-    bbb_url = search_org(bbb_token)
+    # choosen_paramenter = "businessUrl"
+    # paramenter_input = "https://zendesk.com/"
+    # bbb_url = search_org(bbb_token)
+    bbb_url = "https://www.bbb.org/us/ca/san-francisco/profile/computer-software-developers/zendesk-1116-377060"
     scrape_bbb_profile(bbb_url)
