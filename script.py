@@ -118,8 +118,9 @@ def scrape_bbb_profile(bbb_url):
 
     soup = BeautifulSoup(page.content, 'html.parser')
     rating_spam = soup.find_all("span", {"class": "dtm-rating bg-gray-40 leading-1 text-blue-brand css-o3tnwk ez39sfa0"})
-    rating_tag = rating_spam[0].next
-    rating = rating_tag
+    rating_tag = str(rating_spam[0].next)
+    rating = re.sub(r'<.*?>', '', rating_tag)
+    print(rating)
 
 
 
