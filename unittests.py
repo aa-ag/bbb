@@ -5,16 +5,18 @@ import os
 load_dotenv()
 
 class TestScript(unittest.TestCase):
+    ### .env / global/env variables required
     def test_username_exists(self):
         bbbUSERNAME = os.environ["bbbUSERNAME"]
-
         self.assertIsNotNone(bbbUSERNAME)
     
     def test_password_exists(self):
         bbbPASSWORD = os.environ["bbbPASSWORD"]
-
         self.assertIsNotNone(bbbPASSWORD)
 
+    def test_token_exists(self):
+        bbb_token = os.environ["bbb_token"]
+        self.assertIsNotNone(bbb_token)
 
 
 if __name__ == "__main__":
