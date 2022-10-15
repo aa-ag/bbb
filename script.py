@@ -1,3 +1,4 @@
+############------------ IMPORTS ------------##################################
 from dotenv import load_dotenv
 import requests
 import os
@@ -6,6 +7,7 @@ from bs4 import BeautifulSoup
 from pprint import pprint
 import re
 
+############------------ GLOBAL VARIABLE(S) ------------#######################
 load_dotenv()
 
 bbbUSERNAME = os.environ["bbbUSERNAME"]
@@ -13,6 +15,7 @@ bbbPASSWORD = os.environ["bbbPASSWORD"]
 
 bbb_token = os.environ["bbb_token"]
 
+############------------ FUNCTION(S) ------------##############################
 def authenticate():
     '''
      in compliance with the documentation, 
@@ -131,7 +134,7 @@ def scrape_bbb_profile(bbb_url):
     print(rating)
 
 
-
+############------------ DRIVER CODE ------------##############################
 if __name__ == "__main__":
     ### test 1
     # chosen_paramenter = "businessUrl"
@@ -156,7 +159,8 @@ if __name__ == "__main__":
     # print(bbb_url)
     ### test 5
     chosen_paramenter = "businessUrl"
-    paramenter_input = "https://www.flyfrontier.com/"
+    paramenter_input = "https://connect.myoakleaf.com/home"
     bbb_url = search_org(bbb_token)
     print(bbb_url)
     scrape_bbb_profile(bbb_url)
+
