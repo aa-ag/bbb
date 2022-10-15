@@ -87,7 +87,7 @@ def search_org(bbb_token=None):
     '''
     
     url = "https://api.bbb.org/api/orgs/search?{0}={1}".format(
-        choosen_paramenter,
+        chosen_paramenter,
         paramenter_input
     )
     
@@ -123,7 +123,9 @@ def scrape_bbb_profile(bbb_url):
     )
 
     soup = BeautifulSoup(page.content, 'html.parser')
-    rating_spam = soup.find_all("span", {"class": "dtm-rating bg-gray-40 leading-1 text-blue-brand css-o3tnwk ez39sfa0"})
+    rating_spam = soup.find_all(
+        "span", 
+        {"class": "dtm-rating bg-gray-40 leading-1 text-blue-brand css-o3tnwk ez39sfa0"})
     rating_tag = str(rating_spam[0].next)
     rating = re.sub(r'<.*?>', '', rating_tag)
     print(rating)
@@ -131,8 +133,15 @@ def scrape_bbb_profile(bbb_url):
 
 
 if __name__ == "__main__":
-    # choosen_paramenter = "businessUrl"
+    ### test 1
+    # chosen_paramenter = "businessUrl"
     # paramenter_input = "https://zendesk.com/"
     # bbb_url = search_org(bbb_token)
-    bbb_url = "https://www.bbb.org/us/ca/san-francisco/profile/computer-software-developers/zendesk-1116-377060"
+    # bbb_url = "https://www.bbb.org/us/ca/san-francisco/profile/computer-software-developers/zendesk-1116-377060"
+    ### test 2
+    # bbb_url = search_org(bbb_token)
+    chosen_paramenter = "businessUrl"
+    paramenter_input = "https://www.salesforce.com/"
+    bbb_url = search_org(bbb_token)
+    print(bbb_url)
     scrape_bbb_profile(bbb_url)
