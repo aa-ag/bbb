@@ -1,14 +1,20 @@
+### libraries
 import unittest
 from dotenv import load_dotenv
 import os
-from script import search_org
+import requests
+from bs4 import BeautifulSoup
+### relative imports
+from script import search_org, scrape_bbb_profile
 
+### global
 load_dotenv()
 
 bbbUSERNAME = os.environ["bbbUSERNAME"]
 bbbPASSWORD = os.environ["bbbPASSWORD"]
 bbb_token = os.environ["bbb_token"]
 
+### Tests
 class TestScript(unittest.TestCase):
     ### .env / global/env variables required
     def test_username_exists(self):
@@ -28,5 +34,22 @@ class TestScript(unittest.TestCase):
         found_bbb_url = search_org(bbb_token,chosen_paramenter,paramenter_input)
         self.assertEqual(expected_bbb_url, found_bbb_url)
 
+    def test_scrape_bbb_profile(self):
+        test_bbb_url = "https://www.bbb.org/us/ca/san-francisco/profile/computer-software-developers/zendesk-1116-377060"
+        headers = {
+            'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246"
+        }
+        page = requests.get(
+            test_bbb_url,
+            headers=headers
+        )
+
+        soup = BeautifulSoup(page.content, 'html.parser')
+        rating_spam = soup.find_all(
+            "span", 
+            {"class": "dtm-rating bg-gray-40 leading-1 text-blue-brand css-o3tnwk ez39sfa0"})
+        self.assertIsNotNone(rating_spam)
+
+### Driver
 if __name__ == "__main__":
     unittest.main()
