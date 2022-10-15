@@ -108,6 +108,12 @@ def search_org(bbb_token=None):
 
 
 def scrape_bbb_profile(bbb_url):
+    '''
+     scrape the main/official BBB profile 
+     of a business found by ProfileUrl, and
+     create a soup with the HTML of the page, 
+     and find the rating for that business
+    '''
     headers = {
         'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246"
     }
