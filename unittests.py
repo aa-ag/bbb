@@ -28,10 +28,10 @@ class TestScript(unittest.TestCase):
 
     ### functions
     def test_search_org(self):
-        chosen_paramenter = "businessUrl"
-        paramenter_input = "https://zendesk.com/"
+        chosen_parameter = "businessUrl"
+        parameter_input = "https://zendesk.com/"
         expected_bbb_url = "https://www.bbb.org/us/ca/san-francisco/profile/computer-software-developers/zendesk-1116-377060"
-        found_bbb_url = search_org(bbb_token,chosen_paramenter,paramenter_input)
+        found_bbb_url = search_org(bbb_token,chosen_parameter,parameter_input)
         self.assertEqual(expected_bbb_url, found_bbb_url)
 
     def test_scrape_bbb_profile(self):

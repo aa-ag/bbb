@@ -65,10 +65,10 @@ def authenticate():
         return
 
 
-def search_org(bbb_token,chosen_paramenter,paramenter_input):
+def search_org(bbb_token,chosen_parameter,parameter_input):
     '''
      generate authentication token,
-     and search for an org by paramenter `businessUrl`
+     and search for an org by parameter `businessUrl`
 
      response object has 3 properties:
         - TotalResults
@@ -90,8 +90,8 @@ def search_org(bbb_token,chosen_paramenter,paramenter_input):
     '''
     
     url = "https://api.bbb.org/api/orgs/search?{0}={1}".format(
-        chosen_paramenter,
-        paramenter_input
+        chosen_parameter,
+        parameter_input
     )
     
     headers = {
@@ -136,9 +136,9 @@ def scrape_bbb_profile(bbb_url):
 
 ############------------ DRIVER CODE ------------##############################
 if __name__ == "__main__":
-    chosen_paramenter = "businessUrl"
-    paramenter_input = "https://connect.myoakleaf.com/home"
-    bbb_url = search_org(bbb_token,chosen_paramenter,paramenter_input)
+    chosen_parameter = "businessUrl"
+    parameter_input = "https://connect.myoakleaf.com/home"
+    bbb_url = search_org(bbb_token,chosen_parameter,parameter_input)
     print(bbb_url)
     scrape_bbb_profile(bbb_url)
 
