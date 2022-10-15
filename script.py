@@ -145,8 +145,13 @@ if __name__ == "__main__":
     # bbb_url = search_org(bbb_token)
     # print(bbb_url)
     ### test 3
+    # chosen_paramenter = "businessUrl"
+    # paramenter_input = "https://www.groupon.com/"
+    # bbb_url = search_org(bbb_token)
+    # print(bbb_url)
+    ### test 4
     chosen_paramenter = "businessUrl"
-    paramenter_input = "https://www.groupon.com/"
+    paramenter_input = "https://www.hbo.com/"
     bbb_url = search_org(bbb_token)
     print(bbb_url)
     scrape_bbb_profile(bbb_url)
