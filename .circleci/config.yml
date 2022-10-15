@@ -26,7 +26,6 @@ jobs:
       - run:
           name: "Run tests"
           command: |
-            source env/bin/activate
             python3 unittests.py
 
 # Invoke jobs via workflows
