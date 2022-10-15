@@ -140,8 +140,13 @@ if __name__ == "__main__":
     # bbb_url = "https://www.bbb.org/us/ca/san-francisco/profile/computer-software-developers/zendesk-1116-377060"
     ### test 2
     # bbb_url = search_org(bbb_token)
+    # chosen_paramenter = "businessUrl"
+    # paramenter_input = "https://www.salesforce.com/"
+    # bbb_url = search_org(bbb_token)
+    # print(bbb_url)
+    ### test 3
     chosen_paramenter = "businessUrl"
-    paramenter_input = "https://www.salesforce.com/"
+    paramenter_input = "https://www.groupon.com/"
     bbb_url = search_org(bbb_token)
     print(bbb_url)
     scrape_bbb_profile(bbb_url)
