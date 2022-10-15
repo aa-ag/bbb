@@ -31,4 +31,4 @@ jobs:
 workflows:
   build-workflow:
     jobs:
-      - say-hello
+      - build
