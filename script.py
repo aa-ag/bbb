@@ -109,11 +109,11 @@ def search_org(bbb_token,chosen_parameter,parameter_input):
     if r.status_code == 200:
         results = r.json()
 
-        if r["TotalResults"] < 1:
+        if results["TotalResults"] < 1:
             return "No results"
         
-        search_results = r["SearchResults"]
-        # pprint(search_results)
+        search_results = results["SearchResults"]
+        
         for result in search_results:
             return result["ProfileUrl"]
     else:
