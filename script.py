@@ -1,3 +1,8 @@
+### TODO: 
+    ### - try except instead of making requests that may fail
+    ### - translate into javascript to create chrome extension
+
+
 ############------------ IMPORTS ------------##################################
 from dotenv import load_dotenv
 import requests
@@ -56,9 +61,9 @@ def authenticate():
 
     if r.status_code == 200:
         authentication_data = r.json()
-        with open(".env", "a") as f:
+        with open(".env", "w") as f:
             f.write(
-                f"\nbbb_token=\'{authentication_data['access_token']}\'"
+                f"bbbUSERNAME=\'{bbbUSERNAME}\'\nbbbPASSWORD=\'{bbbPASSWORD}\'\nbbb_token=\'{authentication_data['access_token']}\'"
             )
     else:
         print(r.status_code, r.headers, r.content)
@@ -93,7 +98,7 @@ def search_org(bbb_token,chosen_parameter,parameter_input):
         chosen_parameter,
         parameter_input
     )
-    
+    print(url)
     headers = {
             'Authorization': f'Bearer {bbb_token}',
             'content-Type': 'application/x-www-form-urlencoded'
@@ -132,12 +137,14 @@ def scrape_bbb_profile(bbb_url):
     rating_tag = str(rating_spam[0].next)
     rating = re.sub(r'<.*?>', '', rating_tag)
     print(rating)
+    return rating
 
 
 ############------------ DRIVER CODE ------------##############################
 if __name__ == "__main__":
     chosen_parameter = "businessUrl"
-    parameter_input = "https://connect.myoakleaf.com/home"
+    parameter_input = "https://www.google.com"
+    # bbb_token = authenticate()
     bbb_url = search_org(bbb_token,chosen_parameter,parameter_input)
     print(bbb_url)
     scrape_bbb_profile(bbb_url)
