@@ -131,19 +131,24 @@ def scrape_bbb_profile(bbb_url):
     headers = {
         'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246"
     }
-    page = requests.get(
+    r = requests.get(
         bbb_url,
         headers=headers
     )
 
-    soup = BeautifulSoup(page.content, 'html.parser')
-    rating_spam = soup.find_all(
-        "span", 
-        {"class": "dtm-rating bg-gray-40 leading-1 text-blue-brand css-o3tnwk ez39sfa0"})
-    rating_tag = str(rating_spam[0].next)
-    rating = re.sub(r'<.*?>', '', rating_tag)
-    print(rating)
-    return rating
+    if r.status_code == 200:
+        page = r.content
+        soup = BeautifulSoup(page, 'html.parser')
+        rating_spam = soup.find_all(
+            "span", 
+            {"class": "dtm-rating bg-gray-40 leading-1 text-blue-brand css-o3tnwk ez39sfa0"})
+        rating_tag = str(rating_spam[0].next)
+        rating = re.sub(r'<.*?>', '', rating_tag)
+        print(rating)
+        return rating
+    else:
+        print(r.status_code, r.headers, r.content)
+        return
 
 
 ############------------ DRIVER CODE ------------##############################
