@@ -98,21 +98,27 @@ def search_org(bbb_token,chosen_parameter,parameter_input):
         chosen_parameter,
         parameter_input
     )
-    print(url)
+
     headers = {
             'Authorization': f'Bearer {bbb_token}',
             'content-Type': 'application/x-www-form-urlencoded'
         }
 
-    r = requests.get(url,headers=headers).json()
-
-    if r["TotalResults"] < 1:
-        return "No results"
+    r = requests.get(url,headers=headers)
     
-    search_results = r["SearchResults"]
-    # pprint(search_results)
-    for result in search_results:
-        return result["ProfileUrl"]
+    if r.status_code == 200:
+        results = r.json()
+
+        if r["TotalResults"] < 1:
+            return "No results"
+        
+        search_results = r["SearchResults"]
+        # pprint(search_results)
+        for result in search_results:
+            return result["ProfileUrl"]
+    else:
+        print(r.status_code, r.headers, r.content)
+        return
 
 
 def scrape_bbb_profile(bbb_url):
