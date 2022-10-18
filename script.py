@@ -4,6 +4,7 @@
 
 
 ############------------ IMPORTS ------------##################################
+from random import randint
 from time import sleep
 from dotenv import load_dotenv
 import requests
@@ -150,7 +151,7 @@ def scrape_bbb_profile(bbb_url):
             {"class": "dtm-rating bg-gray-40 leading-1 text-blue-brand css-o3tnwk ez39sfa0"})
         rating_tag = str(rating_spam[0].next)
         rating = re.sub(r'<.*?>', '', rating_tag)
-        print(rating)
+    
         return rating
     else:
         print(r.status_code, r.headers, r.content)
@@ -159,13 +160,13 @@ def scrape_bbb_profile(bbb_url):
 
 def driver_function():
     chosen_parameter = "businessUrl"
-    parameter_input = "https://www.formula1.com"
+    parameter_input = "https://www.facebook.com"
     # bbb_token = authenticate()
     bbb_url = search_org(bbb_token,chosen_parameter,parameter_input)
     if bbb_url:
         print(bbb_url)
-        scrape_bbb_profile(bbb_url)
-        
+        rating = scrape_bbb_profile(bbb_url)
+        print(rating)
 
 ############------------ DRIVER CODE ------------##############################
 if __name__ == "__main__":
