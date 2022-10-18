@@ -164,7 +164,7 @@ def driver_function():
     # bbb_token = authenticate()
     bbb_url = search_org(bbb_token,chosen_parameter,parameter_input)
     if bbb_url:
-        print(bbb_url)
+        # print(bbb_url)
         rating = scrape_bbb_profile(bbb_url)
         print(rating)
 
