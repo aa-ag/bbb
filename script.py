@@ -4,6 +4,7 @@
 
 
 ############------------ IMPORTS ------------##################################
+from time import sleep
 from dotenv import load_dotenv
 import requests
 import os
@@ -65,9 +66,10 @@ def authenticate():
             f.write(
                 f"bbbUSERNAME=\'{bbbUSERNAME}\'\nbbbPASSWORD=\'{bbbPASSWORD}\'\nbbb_token=\'{authentication_data['access_token']}\'"
             )
+        return r.status_code
     else:
         print(r.status_code, r.headers, r.content)
-        return
+        return r.status_code
 
 
 def search_org(bbb_token,chosen_parameter,parameter_input):
@@ -104,21 +106,25 @@ def search_org(bbb_token,chosen_parameter,parameter_input):
             'content-Type': 'application/x-www-form-urlencoded'
         }
 
-    r = requests.get(url,headers=headers)
-    
-    if r.status_code == 200:
-        results = r.json()
+    try:
+        r = requests.get(url,headers=headers)
+        
+        if r.status_code == 200:
+            results = r.json()
 
-        if results["TotalResults"] < 1:
-            return "No results"
-        
-        search_results = results["SearchResults"]
-        
-        for result in search_results:
-            return result["ProfileUrl"]
-    else:
-        print(r.status_code, r.headers, r.content)
-        return
+            if results["TotalResults"] < 1:
+                return "No results"
+            
+            search_results = results["SearchResults"]
+            
+            for result in search_results:
+                return result["ProfileUrl"]
+            
+        else:
+            print(r.status_code, r.headers, r.content)
+            return r.status_code
+    except:
+        return "No results"
 
 
 def scrape_bbb_profile(bbb_url):
@@ -151,12 +157,17 @@ def scrape_bbb_profile(bbb_url):
         return
 
 
-############------------ DRIVER CODE ------------##############################
-if __name__ == "__main__":
+def driver_function():
     chosen_parameter = "businessUrl"
-    parameter_input = "https://www.google.com"
+    parameter_input = "https://www.formula1.com"
     # bbb_token = authenticate()
     bbb_url = search_org(bbb_token,chosen_parameter,parameter_input)
-    print(bbb_url)
-    scrape_bbb_profile(bbb_url)
+    if bbb_url:
+        print(bbb_url)
+        scrape_bbb_profile(bbb_url)
+        
+
+############------------ DRIVER CODE ------------##############################
+if __name__ == "__main__":
+    driver_function()
 
