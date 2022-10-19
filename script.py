@@ -1,6 +1,7 @@
 ### TODO: 
     ### - try except instead of making requests that may fail
     ### - store tokens & expirations timestamps in a db?
+    ### - only let users access their tokens once authenticated
     ### - translate to javascript?
 
 
@@ -171,7 +172,7 @@ def driver_function():
 
 ############------------ DRIVER CODE ------------##############################
 if __name__ == "__main__":
-    authentication = authenticate()
-    sleep(1)
+    # authentication = authenticate()
+    # sleep(1)
     driver_function()
 
