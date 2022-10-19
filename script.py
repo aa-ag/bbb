@@ -20,8 +20,6 @@ load_dotenv()
 bbbUSERNAME = os.environ["bbbUSERNAME"]
 bbbPASSWORD = os.environ["bbbPASSWORD"]
 
-bbb_token = os.environ["bbb_token"]
-
 ############------------ FUNCTION(S) ------------##############################
 def authenticate():
     '''
@@ -159,15 +157,19 @@ def scrape_bbb_profile(bbb_url):
 
 
 def driver_function():
+    # authentication = authenticate()
+    # sleep(1)
+    bbb_token = os.environ["bbb_token"]
     chosen_parameter = "businessUrl"
     parameter_input = "https://www.facebook.com"
-    authentication = authenticate()
-    if authentication == 200:
-        bbb_url = search_org(bbb_token,chosen_parameter,parameter_input)
-        if bbb_url:
-            # print(bbb_url)
-            rating = scrape_bbb_profile(bbb_url)
-            print(rating)
+
+    bbb_url = search_org(bbb_token,chosen_parameter,parameter_input)
+    
+    if bbb_url:
+        # print(bbb_url)
+        rating = scrape_bbb_profile(bbb_url)
+        print(rating)
+
 
 ############------------ DRIVER CODE ------------##############################
 if __name__ == "__main__":
