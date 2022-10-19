@@ -1,6 +1,7 @@
 ### TODO: 
     ### - try except instead of making requests that may fail
-    ### - translate into javascript to create chrome extension
+    ### - store tokens & expirations timestamps in a db?
+    ### - translate to javascript?
 
 
 ############------------ IMPORTS ------------##################################
