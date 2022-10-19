@@ -5,7 +5,6 @@
 
 
 ############------------ IMPORTS ------------##################################
-from random import randint
 from time import sleep
 from dotenv import load_dotenv
 import requests
