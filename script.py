@@ -157,8 +157,6 @@ def scrape_bbb_profile(bbb_url):
 
 
 def driver_function():
-    # authentication = authenticate()
-    # sleep(1)
     bbb_token = os.environ["bbb_token"]
     chosen_parameter = "businessUrl"
     parameter_input = "https://www.facebook.com"
@@ -173,5 +171,7 @@ def driver_function():
 
 ############------------ DRIVER CODE ------------##############################
 if __name__ == "__main__":
+    authentication = authenticate()
+    sleep(1)
     driver_function()
 
