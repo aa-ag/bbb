@@ -161,12 +161,13 @@ def scrape_bbb_profile(bbb_url):
 def driver_function():
     chosen_parameter = "businessUrl"
     parameter_input = "https://www.facebook.com"
-    # bbb_token = authenticate()
-    bbb_url = search_org(bbb_token,chosen_parameter,parameter_input)
-    if bbb_url:
-        # print(bbb_url)
-        rating = scrape_bbb_profile(bbb_url)
-        print(rating)
+    authentication = authenticate()
+    if authentication == 200:
+        bbb_url = search_org(bbb_token,chosen_parameter,parameter_input)
+        if bbb_url:
+            # print(bbb_url)
+            rating = scrape_bbb_profile(bbb_url)
+            print(rating)
 
 ############------------ DRIVER CODE ------------##############################
 if __name__ == "__main__":
