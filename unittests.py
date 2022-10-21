@@ -31,17 +31,17 @@ class TestScript(unittest.TestCase):
     #     a = authenticate()
     #     self.assertEqual(a, 200)
 
-    def test_search_org(self):
-        chosen_parameter = "businessUrl"
-        parameter_input = "https://zendesk.com/"
-        expected_bbb_url = "https://www.bbb.org/us/ca/san-francisco/profile/computer-software-developers/zendesk-1116-377060"
-        found_bbb_url = search_org(bbb_token,chosen_parameter,parameter_input)
-        self.assertEqual(expected_bbb_url, found_bbb_url)
+    # def test_search_org(self):
+    #     chosen_parameter = "businessUrl"
+    #     parameter_input = "https://zendesk.com/"
+    #     expected_bbb_url = "https://www.bbb.org/us/ca/san-francisco/profile/computer-software-developers/zendesk-1116-377060"
+    #     found_bbb_url = search_org(bbb_token,chosen_parameter,parameter_input)
+    #     self.assertEqual(expected_bbb_url, found_bbb_url)
 
-    def test_scrape_bbb_profile(self):
-        test_bbb_url = "https://www.bbb.org/us/ca/san-francisco/profile/computer-software-developers/zendesk-1116-377060"
-        rating = scrape_bbb_profile(test_bbb_url)
-        self.assertEqual(rating, "D-")
+    # def test_scrape_bbb_profile(self):
+    #     test_bbb_url = "https://www.bbb.org/us/ca/san-francisco/profile/computer-software-developers/zendesk-1116-377060"
+    #     rating = scrape_bbb_profile(test_bbb_url)
+    #     self.assertEqual(rating, "D-")
 
 ### Driver
 if __name__ == "__main__":
