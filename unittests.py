@@ -5,7 +5,7 @@ import os
 import requests
 from bs4 import BeautifulSoup
 ### relative imports
-from script import search_org, scrape_bbb_profile
+from script import search_org, scrape_bbb_profile, authenticate
 
 ### global
 load_dotenv()
@@ -27,6 +27,10 @@ class TestScript(unittest.TestCase):
         self.assertIsNotNone(bbb_token)
 
     ### functions
+    # def test_authenticate(self):
+    #     a = authenticate()
+    #     self.assertEqual(a, 200)
+
     def test_search_org(self):
         chosen_parameter = "businessUrl"
         parameter_input = "https://zendesk.com/"
@@ -36,19 +40,8 @@ class TestScript(unittest.TestCase):
 
     def test_scrape_bbb_profile(self):
         test_bbb_url = "https://www.bbb.org/us/ca/san-francisco/profile/computer-software-developers/zendesk-1116-377060"
-        headers = {
-            'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246"
-        }
-        page = requests.get(
-            test_bbb_url,
-            headers=headers
-        )
-
-        soup = BeautifulSoup(page.content, 'html.parser')
-        rating_spam = soup.find_all(
-            "span", 
-            {"class": "dtm-rating bg-gray-40 leading-1 text-blue-brand css-o3tnwk ez39sfa0"})
-        self.assertIsNotNone(rating_spam)
+        rating = scrape_bbb_profile(test_bbb_url)
+        self.assertEqual(rating, "D-")
 
 ### Driver
 if __name__ == "__main__":
