@@ -172,7 +172,7 @@ def driver_function():
 
 ############------------ DRIVER CODE ------------##############################
 if __name__ == "__main__":
-    # authentication = authenticate()
+    authentication = authenticate()
     # sleep(1)
-    driver_function()
+    # driver_function()
 
