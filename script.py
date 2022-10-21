@@ -154,13 +154,13 @@ def scrape_bbb_profile(bbb_url):
         return rating
     else:
         print(r.status_code, r.headers, r.content)
-        return
+        return "Something went wrong."
 
 
 def driver_function():
     bbb_token = os.environ["bbb_token"]
     chosen_parameter = "businessUrl"
-    parameter_input = "https://www.facebook.com"
+    parameter_input = "https://www.github.com"
 
     bbb_url = search_org(bbb_token,chosen_parameter,parameter_input)
     
