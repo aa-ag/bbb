@@ -1,4 +1,4 @@
-<!-- [![aa-ag](https://circleci.com/gh/aa-ag/bbb.svg?style=shield)](https://circleci.com/gh/aa-ag/bbb) -->
+[![aa-ag](https://circleci.com/gh/aa-ag/bbb.svg?style=shield)](https://circleci.com/gh/aa-ag/bbb)
 
 ### bbb
 
