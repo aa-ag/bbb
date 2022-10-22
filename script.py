@@ -174,6 +174,6 @@ def driver_function(company):
 if __name__ == "__main__":
     # authentication = authenticate()
     sleep(1)
-    company = "zendesk"
-    driver_function(company)
+    for company in ["zendesk", "amazon", "patagonia"]:
+        driver_function(company)
 
