@@ -157,10 +157,10 @@ def scrape_bbb_profile(bbb_url):
         return "Something went wrong."
 
 
-def driver_function():
+def driver_function(company):
     bbb_token = os.environ["bbb_token"]
     chosen_parameter = "businessUrl"
-    parameter_input = "https://www.zendesk.com"
+    parameter_input = f"https://www.{company}.com"
 
     bbb_url = search_org(bbb_token,chosen_parameter,parameter_input)
     
@@ -174,5 +174,6 @@ def driver_function():
 if __name__ == "__main__":
     # authentication = authenticate()
     sleep(1)
-    driver_function()
+    company = "zendesk"
+    driver_function(company)
 
