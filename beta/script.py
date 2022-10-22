@@ -173,7 +173,7 @@ def driver_function(company):
 ############------------ DRIVER CODE ------------##############################
 if __name__ == "__main__":
     # authentication = authenticate()
-    sleep(1)
-    for company in ["zendesk", "amazon", "patagonia"]:
-        driver_function(company)
+    # sleep(1)
+    company = "groupon"
+    driver_function(company)
 
