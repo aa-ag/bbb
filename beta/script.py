@@ -14,6 +14,7 @@ import json
 from bs4 import BeautifulSoup
 from pprint import pprint
 import re
+from db import connect_to_db
 
 ############------------ GLOBAL VARIABLE(S) ------------#######################
 load_dotenv()
@@ -62,10 +63,14 @@ def authenticate():
 
     if r.status_code == 200:
         authentication_data = r.json()
-        with open(".env", "w") as f:
-            f.write(
-                f"bbbUSERNAME=\'{bbbUSERNAME}\'\nbbbPASSWORD=\'{bbbPASSWORD}\'\nbbb_token=\'{authentication_data['access_token']}\'"
-            )
+        access_token = authentication_data['access_token']
+        print(access_token)
+        cur = connect_to_db()
+        cur.execute(f"INSERT INTO token (id,token) VALUES (2,'{access_token}');")
+        # with open(".env", "w") as f:
+        #     f.write(
+        #         f"bbbUSERNAME=\'{bbbUSERNAME}\'\nbbbPASSWORD=\'{bbbPASSWORD}\'\nbbb_token=\'{authentication_data['access_token']}\'"
+        #     )
         return r.status_code
     else:
         print(r.status_code, r.headers, r.content)
@@ -172,8 +177,13 @@ def driver_function(company):
 
 ############------------ DRIVER CODE ------------##############################
 if __name__ == "__main__":
-    # authentication = authenticate()
+    connection = connect_to_db()
+    cursor = connection.cursor()
+    cursor.execute("INSERT INTO token (id,token) VALUES (2,'456TESTTEST');")
+    connection.commit()
+    connection.close()
+    # authenticate()
     # sleep(1)
-    company = "groupon"
-    driver_function(company)
+    # company = "groupon"
+    # driver_function(company)
 
