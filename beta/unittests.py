@@ -6,6 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 ### relative imports
 from script import search_org, scrape_bbb_profile, authenticate
+from db import connect_to_db
 
 ### global
 load_dotenv()
@@ -25,6 +26,15 @@ class TestScript(unittest.TestCase):
 
     def test_token_exists(self):
         self.assertIsNotNone(bbb_token)
+
+    ### db
+    def test_db_connection(self):
+        connection = connect_to_db()
+        cursor = connection.cursor()
+        cursor.execute("SELECT version();")
+        db_version = cursor.fetchone()
+        expected_db_version='PostgreSQL 13.6 (Ubuntu 13.6-1.pgdg20.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0, 64-bit'
+        self.assertEqual(db_version[0],expected_db_version)
 
     ### functions
     # def test_authenticate(self):
