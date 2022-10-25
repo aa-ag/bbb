@@ -184,12 +184,21 @@ def driver_function(company):
     cur = conn.cursor()
 
     cur.execute(
-        "SELECT * FROM token;"
+        "SELECT MAX(id) FROM token;"
     )
 
-    results = cur.fetchall()
+    max_id = cur.fetchone()
 
-    print(results)
+    max_id = max_id[0]
+
+    cur.execute(
+        f"SELECT token FROM token WHERE id = {max_id};"
+    )
+
+    bbb_token = cur.fetchone()
+
+    bbb_token = bbb_token[0]
+    print(bbb_token)
     return
 
     chosen_parameter = "businessUrl"
