@@ -63,11 +63,28 @@ def authenticate():
 
     if r.status_code == 200:
         authentication_data = r.json()
+    
         access_token = authentication_data['access_token']
-        
+        expires_in = authentication_data["expires_in"]
+        max_hourly_requests = authentication_data["maxRequestsForHourPeriod"]
+        max_daily_requests = authentication_data["maxRequestsForDayPeriod"]
+        expires = authentication_data[".expires"]
+
+
         connection = connect_to_db()
         cursor = connection.cursor()
-        cursor.execute(f"INSERT INTO token (id,token) VALUES (3,'{access_token}');")
+        
+        cursor.execute(
+            """
+                INSERT INTO token 
+                (token,expires_in,maxRequestsForHourPeriod,maxRequestsForDayPeriod,expires) 
+                VALUES 
+                ('{0}','{1}','{2}','{3}','{4}');
+            """.format(
+                access_token,expires_in,max_hourly_requests,max_daily_requests,expires
+            )
+        )
+        
         connection.commit()
         connection.close()
 
