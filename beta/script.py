@@ -180,7 +180,18 @@ def scrape_bbb_profile(bbb_url):
 
 
 def driver_function(company):
-    bbb_token = os.environ["bbb_token"]
+    conn = connect_to_db()
+    cur = conn.cursor()
+
+    cur.execute(
+        "SELECT * FROM token;"
+    )
+
+    results = cur.fetchall()
+
+    print(results)
+    return
+
     chosen_parameter = "businessUrl"
     parameter_input = f"https://www.{company}.com"
 
@@ -194,8 +205,8 @@ def driver_function(company):
 
 ############------------ DRIVER CODE ------------##############################
 if __name__ == "__main__":
-    authenticate()
+    # authenticate()
     # sleep(1)
-    # company = "groupon"
-    # driver_function(company)
+    company = "aldi"
+    driver_function(company)
 
