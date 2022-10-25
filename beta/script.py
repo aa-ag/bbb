@@ -198,8 +198,6 @@ def driver_function(company):
     bbb_token = cur.fetchone()
 
     bbb_token = bbb_token[0]
-    print(bbb_token)
-    return
 
     chosen_parameter = "businessUrl"
     parameter_input = f"https://www.{company}.com"
@@ -216,6 +214,6 @@ def driver_function(company):
 if __name__ == "__main__":
     # authenticate()
     # sleep(1)
-    company = "aldi"
+    company = "zendesk"
     driver_function(company)
 
