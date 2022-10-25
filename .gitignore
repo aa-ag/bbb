@@ -4,6 +4,8 @@ settings.py
 
 config
 config.py
+beta/config
+beta/config.py
 
 # node_modules / blogify
 node_modules
