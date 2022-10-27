@@ -212,18 +212,18 @@ def driver_function(company):
 
 ############------------ DRIVER CODE ------------##############################
 if __name__ == "__main__":
-    connection = connect_to_db()
-    cursor = connection.cursor()
-    cursor.execute(
-        "SELECT * FROM token;"
-    )
+    # connection = connect_to_db()
+    # cursor = connection.cursor()
+    # cursor.execute(
+    #     "SELECT * FROM token;"
+    # )
 
-    expires = cursor.fetchall()
-    print(expires)
+    # expires = cursor.fetchall()
+    # print(expires)
 
 
     # authenticate()
     # sleep(1)
-    # company = "expedia"
-    # driver_function(company)
+    company = "expedia"
+    driver_function(company)
 
