@@ -180,7 +180,7 @@ def scrape_bbb_profile(bbb_url):
 
 
 def driver_function(company):
-    check_token()
+    bbb_token = check_token()
 
     chosen_parameter = "businessUrl"
     parameter_input = f"https://www.{company}.com"
