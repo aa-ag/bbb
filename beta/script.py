@@ -180,6 +180,20 @@ def scrape_bbb_profile(bbb_url):
 
 
 def driver_function(company):
+    check_token()
+
+    chosen_parameter = "businessUrl"
+    parameter_input = f"https://www.{company}.com"
+
+    bbb_url = search_org(bbb_token,chosen_parameter,parameter_input)
+    
+    if bbb_url:
+        print(bbb_url)
+        rating = scrape_bbb_profile(bbb_url)
+        print(rating)
+
+
+def check_token():
     conn = connect_to_db()
     cur = conn.cursor()
 
@@ -199,31 +213,11 @@ def driver_function(company):
 
     bbb_token = bbb_token[0]
 
-    chosen_parameter = "businessUrl"
-    parameter_input = f"https://www.{company}.com"
-
-    bbb_url = search_org(bbb_token,chosen_parameter,parameter_input)
-    
-    if bbb_url:
-        print(bbb_url)
-        rating = scrape_bbb_profile(bbb_url)
-        print(rating)
+    return bbb_token
 
 
 ############------------ DRIVER CODE ------------##############################
 if __name__ == "__main__":
-    # connection = connect_to_db()
-    # cursor = connection.cursor()
-    # cursor.execute(
-    #     "SELECT * FROM token;"
-    # )
-
-    # expires = cursor.fetchall()
-    # print(expires)
-
-
-    # authenticate()
-    # sleep(1)
-    company = "expedia"
+    company = "twitter"
     driver_function(company)
 
