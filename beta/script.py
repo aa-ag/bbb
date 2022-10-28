@@ -179,20 +179,6 @@ def scrape_bbb_profile(bbb_url):
         return "Something went wrong."
 
 
-def driver_function(company):
-    bbb_token = check_token()
-
-    chosen_parameter = "businessUrl"
-    parameter_input = f"https://www.{company}.com"
-
-    bbb_url = search_org(bbb_token,chosen_parameter,parameter_input)
-    
-    if bbb_url:
-        print(bbb_url)
-        rating = scrape_bbb_profile(bbb_url)
-        print(rating)
-
-
 def check_token():
     conn = connect_to_db()
     cur = conn.cursor()
@@ -214,6 +200,20 @@ def check_token():
     bbb_token = bbb_token[0]
 
     return bbb_token
+
+
+def driver_function(company):
+    bbb_token = check_token()
+
+    chosen_parameter = "businessUrl"
+    parameter_input = f"https://www.{company}.com"
+
+    bbb_url = search_org(bbb_token,chosen_parameter,parameter_input)
+    
+    if bbb_url:
+        print(bbb_url)
+        rating = scrape_bbb_profile(bbb_url)
+        print(rating)
 
 
 ############------------ DRIVER CODE ------------##############################
